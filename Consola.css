@@ -5,3 +5,46 @@
 .textarea_con_error{
     background-color:red;
 }
+
+.panel_filtro .ui-panel-inner{
+    position: absolute;
+    top:0px;
+    bottom:0px;
+    left:0px;
+    right:0px;
+}
+
+.panel_filtro .titulo_panel{
+    position: absolute;
+    text-align: center;
+    top: 14px;
+    left: 12px;
+    right: 12px;
+}
+
+#panel_filtro_entrada #txt_filtro_entrada{
+    position: absolute;
+    top:36px;
+    bottom:50px;
+    left:12px;
+    right:12px;
+    height:initial;
+    width:initial;
+}
+
+#panel_filtro_entrada #contenedor_btn_actualizar_filtro_entrada{
+    position: absolute;
+    bottom:0px;
+    left:12px;
+    right:12px;
+}
+
+#panel_filtro_salida #txt_filtro_salida{
+    position: absolute;
+    top:36px;
+    bottom:12px;
+    left:12px;
+    right:12px;
+    height:initial;
+    width:initial;
+}

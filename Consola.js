@@ -1,10 +1,9 @@
-var Consola = function(){
+var Consola = function(ui){
+    this.ui = ui||$("#plantilla_consola").clone();
     this.start();
 };
 
 Consola.prototype.start = function(){
-    this.ui = $("#plantilla_consola").clone();
-    
     this.cliente_HTTP = new NodoClienteHTTP('http://router-vortex.herokuapp.com', 1000);             
     this.portal = new NodoPortalBidiMonoFiltro();
     
@@ -49,5 +48,4 @@ Consola.prototype.alRecibirMensaje = function(un_mensaje){
 
 Consola.prototype.dibujarEn = function(un_panel){
     un_panel.append(this.ui);
-    un_panel.trigger('create');
 };
