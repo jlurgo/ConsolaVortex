@@ -1,0 +1,7 @@
+#plantillas{
+    display:none;
+}
+
+.textarea_con_error{
+    background-color:red;
+}
