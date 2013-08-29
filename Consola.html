@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="Consola.css" />
+        <link rel="stylesheet" href="jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.css" />
+        <title>Vortex Commander</title>
+	</head>
+	
+	<body>	
+        <div data-role="page" id="pantalla_consola" data-theme="a">
+            <div data-role="header">
+                <h1>Consola Vortex</h1>
+            </div>
+        
+            <div id="contenido" data-role="content" >	    
+            </div>
+        </div>
+        
+        <div id="plantillas">
+                <div id="plantilla_consola" class="consola">
+                    <form>
+                        <label for="txt_filtro_entrada">Filtro de Entrada</label>
+                        <textarea id="txt_filtro_entrada" rows="8" cols="40"></textarea>
+                        <input id="btn_actualizar_filtro_entrada" type="button" value="Aplicar Filtro">
+                    </form>                    
+                    <form>
+                        <label for="txt_filtro_salida">Filtro de Salida</label>
+                        <textarea id="txt_filtro_salida" rows="8" cols="40"></textarea>
+                    </form>
+                    <form>
+                        <label for="txt_mensajes_entrantes">Mensajes Recibidos</label>
+                        <textarea id="txt_mensajes_entrantes" rows="20" cols="40"></textarea>
+                    </form> 
+                    <form>
+                        <label for="txt_mensaje_para_enviar">Enviar</label>
+                        <textarea id="txt_mensaje_para_enviar" rows="8" cols="40"></textarea>
+                        <input id="btn_enviar_mensaje" type="button" value="->">
+                    </form>                     
+                </div>   
+        </div>  
+    </body>    
+    <script type="text/javascript" src="jquery-1.10.2.min.js"></script> 
+    <script src="jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.js"></script>
+    <script type="text/javascript" src="VortexJS/Vortex.js"></script>
+    <script type="text/javascript" src="VortexJS/FiltrosYTransformaciones.js"></script>
+    <script type="text/javascript" src="VortexJS/NodoClienteHTTP.js"></script> 
+    <script type="text/javascript" src="VortexJS/GeneradorDeIdMensaje.js"></script> 
+    <script type="text/javascript" src="VortexJS/NodoClienteHTTP.js"></script> 
+    <script type="text/javascript" src="VortexJS/NodoMultiplexor.js"></script> 
+    <script type="text/javascript" src="VortexJS/NodoPortalBidi.js"></script> 
+    <script type="text/javascript" src="VortexJS/NodoPortalBidiMonoFiltro.js"></script> 
+    <script type="text/javascript" src="VortexJS/NodoRouter.js"></script> 
+    <script type="text/javascript" src="VortexJS/PataConectora.js"></script> 
+    <script type="text/javascript" src="VortexJS/Canal.js"></script> 
+    <script type="text/javascript" src="VortexJS/NodoPortalConCanal.js"></script> 
+    <script type="text/javascript" src="VortexJS/NodoPortalBidiMonoFiltroConCanal.js"></script> 
+    <script type="text/javascript" src="VortexJS/NodoConectorSocket.js"></script>
+    
+    <script type="text/javascript" src="Consola.js"></script> 
+    <script type="text/javascript" src="Launcher.js"></script> 
+    <script type="text/javascript" src="phonegap.js"></script>
+</html>
