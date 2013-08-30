@@ -1,7 +1,7 @@
-var onDeviceReady = function() {         
-    $.mobile.changePage($("#pantalla_consola"), {transition:"flip", allowSamePageTransition:true});
-    var consola = new Consola();
-    consola.dibujarEn($("#contenido"));
+var onDeviceReady = function() {          
+    var pantalla_consola = $("#pantalla_consola");
+    $.mobile.changePage(pantalla_consola, {transition:"flip", allowSamePageTransition:true});
+    var consola = new Consola(pantalla_consola);    
 };
 
 $(document).ready(function() {  

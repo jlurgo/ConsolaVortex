@@ -5,40 +5,43 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="Consola.css" />
         <link rel="stylesheet" href="jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.css" />
-        <title>Vortex Commander</title>
+        <title>Consola</title>
 	</head>
 	
 	<body>	
         <div data-role="page" id="pantalla_consola" data-theme="a">
+            <div data-role="panel" id="panel_filtro_entrada" class="panel_filtro" position="left" data-display="push" data-theme="f">      
+                <div class="titulo_panel">Filtro de Entrada</div>
+                <textarea id="txt_filtro_entrada" rows="8" cols="40"></textarea>
+                <div id="contenedor_btn_actualizar_filtro_entrada">
+                    <input id="btn_actualizar_filtro_entrada" type="button" value="Aplicar Filtro"> 
+                </div>                            
+            </div>
+            <div data-role="panel" id="panel_filtro_salida" class="panel_filtro" data-position="right" data-display="push" data-theme="f">
+                <div class="titulo_panel">Filtro de Salida </div>
+                <textarea id="txt_filtro_salida" rows="8" cols="40"></textarea>
+            </div>
             <div data-role="header">
+                <a href="#panel_filtro_entrada">Entrada</a>
                 <h1>Consola Vortex</h1>
+                <a href="#panel_filtro_salida">Salida</a>
             </div>
         
-            <div id="contenido" data-role="content" >	    
+            <div id="contenido" data-role="content" >	
+                <form>
+                    <label for="txt_mensajes_entrantes">Mensajes Recibidos</label>
+                    <textarea id="txt_mensajes_entrantes" rows="20" cols="40"></textarea>
+                </form> 
+                <form>
+                    <label for="txt_mensaje_para_enviar">Enviar</label>
+                    <textarea id="txt_mensaje_para_enviar" rows="8" cols="40"></textarea>
+                    <input id="btn_enviar_mensaje" type="button" value="->">
+                </form>                      
             </div>
         </div>
         
         <div id="plantillas">
-                <div id="plantilla_consola" class="consola">
-                    <form>
-                        <label for="txt_filtro_entrada">Filtro de Entrada</label>
-                        <textarea id="txt_filtro_entrada" rows="8" cols="40"></textarea>
-                        <input id="btn_actualizar_filtro_entrada" type="button" value="Aplicar Filtro">
-                    </form>                    
-                    <form>
-                        <label for="txt_filtro_salida">Filtro de Salida</label>
-                        <textarea id="txt_filtro_salida" rows="8" cols="40"></textarea>
-                    </form>
-                    <form>
-                        <label for="txt_mensajes_entrantes">Mensajes Recibidos</label>
-                        <textarea id="txt_mensajes_entrantes" rows="20" cols="40"></textarea>
-                    </form> 
-                    <form>
-                        <label for="txt_mensaje_para_enviar">Enviar</label>
-                        <textarea id="txt_mensaje_para_enviar" rows="8" cols="40"></textarea>
-                        <input id="btn_enviar_mensaje" type="button" value="->">
-                    </form>                     
-                </div>   
+                
         </div>  
     </body>    
     <script type="text/javascript" src="jquery-1.10.2.min.js"></script> 
