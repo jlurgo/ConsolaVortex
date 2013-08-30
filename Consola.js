@@ -41,6 +41,11 @@ Consola.prototype.start = function(){
             _this.txt_mensaje_para_enviar.addClass("textarea_con_error");
         }
     });
+    
+    this.txt_filtro_salida = this.ui.find("#txt_filtro_salida");
+    this.portal.onFiltroRecibidoModificado = function(filtro){
+         _this.txt_filtro_salida.val(filtro.serializar());
+    };
 };
 
 Consola.prototype.alRecibirMensaje = function(un_mensaje){

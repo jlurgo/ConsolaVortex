@@ -17,6 +17,10 @@ var NodoPortalBidiMonoFiltro = function(aliasPortal){
             publicarFiltro : function(un_filtro){},
             filtroRecibido : function(){ return new FiltroFalse();}
 		};
+    var _this = this;
+    this._pata.onFiltroRecibidoModificado = function(filtro){
+        _this.onFiltroRecibidoModificado(filtro);  
+    };
     this._alias_portal = "portal " + aliasPortal;
 };
 NodoPortalBidiMonoFiltro.prototype = {
@@ -52,6 +56,8 @@ NodoPortalBidiMonoFiltro.prototype = {
     },
     filtroDeSalida : function(){
         return this._pata.filtroRecibido();
+    },
+    onFiltroRecibidoModificado: function(filtro){
     }
 };
 
