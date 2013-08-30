@@ -28,11 +28,16 @@ Consola.prototype.start = function(){
     
     this.txt_mensajes_entrantes = this.ui.find("#txt_mensajes_entrantes");
     this.txt_mensaje_para_enviar = this.ui.find("#txt_mensaje_para_enviar");
+    this.editor_mensaje_para_enviar = new jsoneditor.JSONEditor(this.txt_mensaje_para_enviar[0],
+                                                           {
+                                                               mode: 'tree',
+                                                               search: false
+                                                           });
     
     this.btn_enviar_mensaje = this.ui.find("#btn_enviar_mensaje");
     this.btn_enviar_mensaje.click(function(){
         try{
-            var mensaje = JSON.parse(_this.txt_mensaje_para_enviar.val());
+            var mensaje = _this.editor_mensaje_para_enviar.get();
             _this.portal.enviarMensaje(mensaje);
             _this.txt_mensaje_para_enviar.removeClass("textarea_con_error");
         }

@@ -48,3 +48,12 @@
     height:initial;
     width:initial;
 }
+
+.jsoneditor .menu{
+    display:none;
+}
+
+.jsoneditor{
+    border-radius: 10px;
+    border-color:black !important;
+}
