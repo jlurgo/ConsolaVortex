@@ -28,6 +28,7 @@ var PataConectora = function(idLocalPata, generadorDeIdMensaje, aliasNodo){
     };       
     this.publicarFiltro = this.publicarFiltro_cuandoLaPataNoEsBidi;   
     this._alias_nodo = aliasNodo;
+    this.onFiltroRecibidoModificado = function(filtro){};
 };
 
 PataConectora.prototype = {
@@ -51,7 +52,7 @@ PataConectora.prototype = {
     recibirPublicacionDeFiltro : function(una_publicacion){
         if(!this.elMensajeEsParaEstaPata(una_publicacion)) return;
         this._filtroRecibido = DesSerializadorDeFiltros.desSerializarFiltro(una_publicacion.filtro).simplificar();
-        this.onFiltroRecibidoModificado();
+        this.onFiltroRecibidoModificado(this._filtroRecibido);
     },
     enviarPedidoDeIdRemoto : function(){
 		var pedido = {
@@ -120,7 +121,7 @@ PataConectora.prototype = {
     laPataSeHizoBiDireccional : function(){
         //onsole.log("Un Nodo en su Pata " + idLocal.toString() + " dice: soy bidi!");
         this._filtroRecibido = new FiltroFalse();
-        this.onFiltroRecibidoModificado();
+        this.onFiltroRecibidoModificado(this._filtroRecibido);
         this.publicarFiltro = this.publicarFiltro_cuandoLaPataEsBidi;
         if(!(this._filtroAEnviar === undefined)) this.publicarFiltro(this._filtroAEnviar);
         this._laPataEsBidireccional = true;
@@ -157,10 +158,7 @@ PataConectora.prototype = {
 			default:
 			this.filtrarYEnviarMensaje(un_mensaje);
 		}
-    },            
-    onFiltroRecibidoModificado : function(){
-        
-    },        
+    },              
     publicarFiltro : this.publicarFiltro_cuandoLaPataNoEsBidi,    
 	conectarCon : function (un_receptor) {
 		this._receptor = un_receptor;

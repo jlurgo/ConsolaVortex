@@ -13,14 +13,14 @@
         <div data-role="page" id="pantalla_consola" data-theme="a">
             <div data-role="panel" id="panel_filtro_entrada" class="panel_filtro" position="left" data-display="push" data-theme="f">      
                 <div class="titulo_panel">Filtro de Entrada</div>
-                <textarea id="txt_filtro_entrada" rows="8" cols="40"></textarea>
+                <textarea id="div_filtro_entrada" rows="8" cols="40"></textarea>
                 <div id="contenedor_btn_actualizar_filtro_entrada">
                     <input id="btn_actualizar_filtro_entrada" type="button" value="Aplicar Filtro"> 
                 </div>                            
             </div>
             <div data-role="panel" id="panel_filtro_salida" class="panel_filtro" data-position="right" data-display="push" data-theme="f">
                 <div class="titulo_panel">Filtro de Salida </div>
-                <textarea id="txt_filtro_salida" rows="8" cols="40"></textarea>
+                <div id="div_filtro_salida"></div>
             </div>
             <div data-role="header">
                 <a href="#panel_filtro_entrada">Entrada</a>
@@ -29,14 +29,11 @@
             </div>
         
             <div id="contenido" data-role="content" >	
-                <form>
-                    <label for="txt_mensajes_entrantes">Mensajes Recibidos</label>
-                    <textarea id="txt_mensajes_entrantes" rows="20" cols="40"></textarea>
-                </form> 
-                <form>
-                    <div id="txt_mensaje_para_enviar"></div>
-                    <input id="btn_enviar_mensaje" type="button" value="Enviar Mensaje">
-                </form>                      
+                <div id="div_mensajes_entrantes"></div>
+                <div id="div_mensaje_para_enviar"></div>
+                <div id="contenedor_btn_enviar_mensaje">
+                    <a href="#" id="btn_enviar_mensaje" data-role="button" data-inline="true"  data-icon="arrow-r" data-iconpos="bottom"> Enviar </a>       
+                </div>                
             </div>
         </div>
         
