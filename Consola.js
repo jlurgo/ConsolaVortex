@@ -55,6 +55,7 @@ Consola.prototype.start = function(){
                                                                name:"Filtro de Salida Recibido",
                                                                search: true
                                                            });
+    this.editor_filtro_salida.set(this.portal.filtroDeSalida().serializar());
     this.portal.onFiltroRecibidoModificado = function(filtro){
          _this.editor_filtro_salida.set(filtro.serializar());
     };
