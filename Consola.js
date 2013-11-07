@@ -4,11 +4,19 @@ var Consola = function(ui){
 };
 
 Consola.prototype.start = function(){
-    this.cliente_HTTP = new NodoClienteHTTP('http://router-vortex.herokuapp.com', 1000);             
+    //var clienteHTTP = new NodoClienteHTTP('http://localhost:3000', 100);         
+    //var socket = io.connect('http://localhost:3000');    
+    //var socket = io.connect('http://router-vortex.herokuapp.com');
+    //var conector_socket = new NodoConectorSocket(socket);    
+    //this.cliente_HTTP = new NodoClienteHTTP('http://router-vortex.herokuapp.com', 500);      
+    
+    var socket = io.connect('https://router-vortex.herokuapp.com');
+    this.cliente_sck = new NodoConectorSocket(socket);    
+       
     this.portal = new NodoPortalBidiMonoFiltro();
     
-    this.portal.conectarCon(this.cliente_HTTP);
-    this.cliente_HTTP.conectarCon(this.portal);
+    this.portal.conectarCon(this.cliente_sck);
+    this.cliente_sck.conectarCon(this.portal);
     
     this.div_filtro_entrada = this.ui.find("#div_filtro_entrada");
     

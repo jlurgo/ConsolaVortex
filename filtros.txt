@@ -1,0 +1,3 @@
+{"tipo":"EQ",
+"clave":"nombre",
+"valor":"cuca"}

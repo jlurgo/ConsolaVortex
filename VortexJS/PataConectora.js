@@ -10,7 +10,7 @@ if(typeof(require) != "undefined"){
     var FiltroOR = require("./FiltrosYTransformaciones").FiltroOR;
     var FiltroAND = require("./FiltrosYTransformaciones").FiltroAND;
     var DesSerializadorDeFiltros = require("./FiltrosYTransformaciones").DesSerializadorDeFiltros;
-    var ComparadorDeFiltros = require("./FiltrosYTransformaciones").ComparadorDeFiltros;
+    var ClonadorDeObjetos = require("./ClonadorDeObjetos").clase;
 }
 
 var PataConectora = function(idLocalPata, generadorDeIdMensaje, aliasNodo){
@@ -28,7 +28,7 @@ var PataConectora = function(idLocalPata, generadorDeIdMensaje, aliasNodo){
     };       
     this.publicarFiltro = this.publicarFiltro_cuandoLaPataNoEsBidi;   
     this._alias_nodo = aliasNodo;
-    this.onFiltroRecibidoModificado = function(filtro){};
+    this.onFiltroRecibidoModificado = function(){};  
 };
 
 PataConectora.prototype = {
@@ -36,7 +36,7 @@ PataConectora.prototype = {
         return this._idLocal == un_mensaje.idLocalAlReceptor;   
     },
     enviarMensaje : function(un_mensaje){
-        var mensaje_a_enviar = this.clonarMensaje(un_mensaje);
+        var mensaje_a_enviar = ClonadorDeObjetos.clonarObjeto(un_mensaje);
 		if(!(this._idRemoto===undefined)) mensaje_a_enviar.idLocalAlReceptor = this._idRemoto;
         var self = this;
 		setTimeout(function(){              
@@ -105,7 +105,7 @@ PataConectora.prototype = {
 		}
 	},
     publicarFiltro_cuandoLaPataEsBidi : function(filtro){
-        if(ComparadorDeFiltros.compararFiltros(filtro, this._filtroEnviado)) return;
+        if(filtro.equals(this._filtroEnviado)) return;
         var publicacionDeFiltro = {
 			tipoDeMensaje : "Vortex.Filtro.Publicacion",
             filtro: filtro.serializar()
@@ -158,85 +158,13 @@ PataConectora.prototype = {
 			default:
 			this.filtrarYEnviarMensaje(un_mensaje);
 		}
-    },              
-    publicarFiltro : this.publicarFiltro_cuandoLaPataNoEsBidi,    
+    },                    
 	conectarCon : function (un_receptor) {
 		this._receptor = un_receptor;
 		this.enviarPedidoDeIdRemoto();
     },        
     conectadaBidireccionalmente : function(){
         return this._laPataEsBidireccional;
-    },
-    clonarMensaje: function(obj){
-        if (typeof obj === 'object')
-         {
-            if (obj ===null ) { return null; }
-            if (obj instanceof Array )
-            { 
-                return this.extend([], obj); 
-            }
-            else if( obj instanceof Date )
-            {
-                var t= new obj.constructor();
-                t.setTime(obj.getTime());
-                return t;
-            }
-            else
-            { 
-                return this.extend({}, obj); 
-            }
-         }
-         return obj;        
-    },
-    hop: Object.prototype.hasOwnProperty,
-    extend: function(a, b, context, newobjs, aparent, aname, haveaparent){
-        if (a==b){ return a;}
-        if (!b)  { return a;}
-         
-        var key, clean_context=false, return_sublevel=false,b_pos;
-        if(!haveaparent){ aparent={'a':a}; aname='a'; }
-        if(!context){clean_context=true;context=[];newobjs=[];}
-        b_pos=context.indexOf(b);
-        if( b_pos==-1 ) {context.push(b);newobjs.push([aparent, aname]);} else { return newobjs[b_pos][0][ newobjs[b_pos][1] ]; }
-        
-        for (key in b)
-        {
-            if(this.hop.call(b,key))
-            { 
-                if(typeof a[key] === 'undefined')
-                {   
-                    if(typeof b[key] === 'object')
-                    {
-                        if( b[key] instanceof Array ) // http://javascript.crockford.com/remedial.html
-                        {a[key] = this.extend([], b[key],context,newobjs,a,key,true);}
-                        else if(b[key]===null)
-                        {a[key] = null;}
-                        else if( b[key] instanceof Date )
-                        { a[key]= new b[key].constructor();a[key].setTime(b[key].getTime());  }
-                        else
-                        { a[key] = this.extend({}, b[key],context,newobjs,a,key,true); /*a[key].constructor = b[key].constructor;  a[key].prototype = b[key].prototype;*/ }
-                    }
-                    else
-                    {  a[key] = b[key]; }
-                }
-                else if(typeof a[key] === 'object' && a[key] !== null)
-                {  a[key] = this.extend(a[key], b[key],context,newobjs,a,key,true); /*a[key].constructor = b[key].constructor;  a[key].prototype = b[key].prototype;*/ }
-                else  
-                {  a[key] = b[key]; }
-            }
-         }
-         if(clean_context) {context=null;newobjs=null;}
-         if(!haveaparent)
-         {
-            aparent=null;
-            return a;
-         }
-         if(typeof a === 'object' && !(a instanceof Array) )
-         {
-          /*a.constructor = b.constructor;
-          a.prototype   = b.prototype*/;
-         } 
-         return a;        
     }
 };
 
